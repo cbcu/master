@@ -1,6 +1,6 @@
 VERSION 5.00
 Begin VB.Form Form1 
-   Caption         =   "DD 例程"
+   Caption         =   "DD"
    ClientHeight    =   3795
    ClientLeft      =   60
    ClientTop       =   345
@@ -10,10 +10,10 @@ Begin VB.Form Form1
    ScaleWidth      =   4815
    StartUpPosition =   3  '窗口缺省
    Begin VB.CommandButton Command2 
-      Caption         =   "停止"
+      Caption         =   "Stop"
       Height          =   615
       Left            =   3120
-      TabIndex        =   7
+      TabIndex        =   6
       Top             =   2040
       Width           =   1215
    End
@@ -23,24 +23,13 @@ Begin VB.Form Form1
       Top             =   120
    End
    Begin VB.Frame Frame1 
-      Caption         =   "功能选项"
       Height          =   3015
       Left            =   720
       TabIndex        =   1
       Top             =   360
       Width           =   1935
       Begin VB.OptionButton Option1 
-         Caption         =   "键盘字符"
-         Height          =   375
-         Index           =   4
-         Left            =   360
-         TabIndex        =   6
-         TabStop         =   0   'False
-         Top             =   2160
-         Width           =   1335
-      End
-      Begin VB.OptionButton Option1 
-         Caption         =   "键盘按键"
+         Caption         =   "Kbd tab"
          Height          =   375
          Index           =   3
          Left            =   360
@@ -50,7 +39,7 @@ Begin VB.Form Form1
          Width           =   1335
       End
       Begin VB.OptionButton Option1 
-         Caption         =   "鼠标滚轮"
+         Caption         =   "Mouse wheel"
          Height          =   375
          Index           =   2
          Left            =   360
@@ -60,7 +49,7 @@ Begin VB.Form Form1
          Width           =   1335
       End
       Begin VB.OptionButton Option1 
-         Caption         =   "鼠标点击"
+         Caption         =   "Mouse click"
          Height          =   375
          Index           =   1
          Left            =   360
@@ -70,7 +59,7 @@ Begin VB.Form Form1
          Width           =   1335
       End
       Begin VB.OptionButton Option1 
-         Caption         =   "鼠标移动"
+         Caption         =   "Mouse  move"
          Height          =   375
          Index           =   0
          Left            =   360
@@ -81,7 +70,7 @@ Begin VB.Form Form1
       End
    End
    Begin VB.CommandButton Command1 
-      Caption         =   "开始"
+      Caption         =   "Start"
       Height          =   615
       Left            =   3120
       TabIndex        =   0
@@ -118,6 +107,7 @@ Private Declare Function DD_movR Lib "DD94687.32.dll" (ByVal dx As Long, ByVal d
 'Private Declare Function DD_str Lib "DDHID32.dll" (ByVal str As String) As Long
 'Private Declare Function DD_movR Lib "DDHID32.dll" (ByVal dx As Long, ByVal dy As Long) As Long
 
+Private Declare Sub Sleep Lib "kernel32.DLL" (ByVal dwMilliseconds As Long)
 Dim sel As Integer
 
 'start
@@ -153,10 +143,11 @@ Private Sub Timer1_Timer()
    Case 2
   '1==L.down, 2==L.up, 4==R.down, 8==R.up, 16==M.down, 32==M.up
     ret = DD_btn(1)    'LefttClick
+    Sleep (50)
     ret = DD_btn(2)
   
-    ret = DD_btn(4)   'RightClick
-    ret = DD_btn(8)
+    'ret = DD_btn(4)   'RightClick
+    'ret = DD_btn(8)
 
    Case 3
     ret = DD_whl(1)      'wheel up
@@ -164,10 +155,12 @@ Private Sub Timer1_Timer()
    
    Case 4
     ret = DD_key(300, 1)  'tab==300, 1==down, 2==up
+    Sleep (60)
     ret = DD_key(300, 2)
    
    Case 5
-    ret = DD_str("!@# ,./")  '
+    'ret = DD_str("!@# ,./")  '
+    
  End Select
  
  
