@@ -151,7 +151,7 @@ Private Sub Timer1_Timer()
 
    Case 3
     ret = DD_whl(1)      'wheel up
-    ret = DD_whl(2)     'wheelx down
+    ret = DD_whl(2)     'wheel down
    
    Case 4
     ret = DD_key(300, 1)  'tab==300, 1==down, 2==up

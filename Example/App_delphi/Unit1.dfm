@@ -1,9 +1,9 @@
 object Form1: TForm1
   Left = 353
   Top = 549
-  Width = 510
-  Height = 456
   Caption = 'DD'
+  ClientHeight = 339
+  ClientWidth = 494
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -16,10 +16,10 @@ object Form1: TForm1
   PixelsPerInch = 96
   TextHeight = 13
   object GroupBox1: TGroupBox
-    Left = 120
-    Top = 33
+    Left = 128
+    Top = 114
     Width = 225
-    Height = 176
+    Height = 144
     TabOrder = 0
     object RadioButton1: TRadioButton
       Left = 30
@@ -59,8 +59,8 @@ object Form1: TForm1
     end
   end
   object Button2: TButton
-    Left = 254
-    Top = 232
+    Left = 262
+    Top = 264
     Width = 75
     Height = 25
     Caption = 'stop'
@@ -69,8 +69,8 @@ object Form1: TForm1
     OnClick = Button2Click
   end
   object Button1: TButton
-    Left = 150
-    Top = 232
+    Left = 158
+    Top = 264
     Width = 75
     Height = 25
     Caption = 'start'
@@ -78,19 +78,19 @@ object Form1: TForm1
     OnClick = Button1Click
   end
   object Edit1: TEdit
-    Left = 56
-    Top = 280
+    Left = 66
+    Top = 64
     Width = 361
     Height = 21
     TabOrder = 3
-    Text = 'Edit1'
+    Text = 'dd.dll'
   end
   object Button3: TButton
-    Left = 184
-    Top = 320
+    Left = 190
+    Top = 91
     Width = 113
     Height = 25
-    Caption = 'DD dl'
+    Caption = 'load'
     TabOrder = 4
     OnClick = Button3Click
   end

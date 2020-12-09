@@ -141,27 +141,32 @@ var
   ddcode :integer;
 begin
    case select of
-     1:   DD_movR(20,20)  ;   //Mouse Move rel.
-
+     1:
+     begin
+       DD_movR(20,20);     //Mouse Move rel.
+       sleep(1000);
+       DD_mov(100,100);    //Mouse Move abs.
+     end;
      2:
-     begin                      //Mouse LeftClick.
-          DD_btn(1)  ;
-          sleep(50);
-          DD_btn(2)  ;
+     begin                    //Mouse LeftClick.
+          DD_btn(1);          //1==L.down, 2==L.up, 4==R.down, 8==R.up, 16==M.down, 32==M.up
+          sleep(50);          //may, delay 50ms,
+          DD_btn(2);
      end;
 
-     3:                         //Mouse Wheel. 1==down, 2==up
+     3:                       //Mouse Wheel. 1==down, 2==up
      begin
-          DD_whl(1)  ;
-          DD_whl(2)  ;
+          DD_whl(1);
+          DD_whl(2);
      end;
 
-     4:                         //
+     4:
      begin
-          ddcode := 300;        // TAB is 300 in ddcode.
-          ddcode := DD_todc(VK_TAB);  //or by
-          DD_key(ddcode,1)  ;         // 1==down£¬2==up
-          DD_key(ddcode,2)  ;
+          ddcode := 300;              // TAB is 300 in ddcode.
+          ddcode := DD_todc(VK_TAB);  //or by VK code
+          DD_key(ddcode,1);           //1==down£¬2==up
+          sleep(60);                  //may, delay 1-120ms,
+          DD_key(ddcode,2);
      end;
 
      //5:  DD_str('KeyBorad !@#*| ');
