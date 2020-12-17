@@ -18,17 +18,16 @@ int CDD::GetFunAddr(CString dllfile)
 {
 	if ( -1 == ::GetFileAttributes(dllfile))
 	{
-		return -11; //文件不存在
+		return -11;
 	}
 
 	m_hModule = ::LoadLibrary(dllfile);
 
 	if ( m_hModule==NULL)
 	{
-		return -12; // 载入库错误
+		return -12; 
 	}
 
-	// 函数使用说明 g or b
 	DD_btn = (pDD_btn )GetProcAddress(m_hModule,"DD_btn"); 
 	DD_whl = (pDD_whl )GetProcAddress(m_hModule,"DD_whl"); 
 	DD_key = (pDD_key )GetProcAddress(m_hModule,"DD_key"); 
@@ -37,14 +36,13 @@ int CDD::GetFunAddr(CString dllfile)
 	DD_todc  = (pDD_todc)GetProcAddress(m_hModule,"DD_todc"); 
 	DD_movR = (pDD_movR)GetProcAddress(m_hModule,"DD_movR"); 
 
-	//判断一下，是否正确获取了函数地址
 	if ( DD_btn && DD_whl && DD_key && DD_mov && DD_str  && DD_todc && DD_movR)
 	{
-		return 1; // 成功
+		return 1; 
 	}
 	else
 	{
-		return -13; // 获取函数地址错误
+		return -13;
 	}
 }
 

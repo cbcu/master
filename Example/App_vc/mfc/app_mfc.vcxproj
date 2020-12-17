@@ -234,7 +234,6 @@
   <ItemGroup>
     <None Include="res\app_mfc.ico" />
     <None Include="res\app_mfc.rc2" />
-    <None Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="app_mfc.rc" />

@@ -53,7 +53,6 @@ BOOL Capp_mfcDlg::OnInitDialog()
 
 	// TODO: 在此添加额外的初始化代码
 	
-	//LoadFromReg();  
 	SetHotKey();
 
 	return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
@@ -100,12 +99,7 @@ HCURSOR Capp_mfcDlg::OnQueryDragIcon()
 //查找dll文件 
 void Capp_mfcDlg::OnBnClickedButtonfindfile()
 {
-	// 直接从注册表中获取
-	m_dllfile = LoadFromReg();
-	GetDlgItem(IDC_EDIT_dllfile)->SetWindowText(m_dllfile);
-	
-    // 或手动定位
-	LPCWSTR filter = L"DD入口文件|*.dll";
+	LPCWSTR filter = L"DD dll|*.dll";
 	CFileDialog 	dlg(TRUE,L"DD",L"", OFN_HIDEREADONLY  , filter ,NULL,0,TRUE);
 
 	WCHAR fileBuffer[MAX_PATH] = {0};
@@ -125,18 +119,17 @@ void Capp_mfcDlg::OnBnClickedButtonfindfile()
 
 void Capp_mfcDlg::OnBnClickedButtontest()
 {
-	// TODO: 在此添加控件通知处理程序代码
 	CString s;
 	GetDlgItem(IDC_BUTTON_test)->GetWindowText(s);
 
-	if ( s== L"开始测试")
+	if ( s== L"Start")
 	{
-		GetDlgItem(IDC_BUTTON_test)->SetWindowText(L"停止测试");
+		GetDlgItem(IDC_BUTTON_test)->SetWindowText(L"Stop");
 		SetTimer(0,3000,0);
 	}
 	else
 	{
-		GetDlgItem(IDC_BUTTON_test)->SetWindowText(L"开始测试");
+		GetDlgItem(IDC_BUTTON_test)->SetWindowText(L"Start");
 		KillTimer(0);
 	}
 }
@@ -151,37 +144,26 @@ void Capp_mfcDlg::SetStatus(int val)
 	switch(val)
 	{
 	case 1:
-		AfxMessageBox(L"DD驱动加载成功");		
+		AfxMessageBox(L"DD Load OK");		
 		GetDlgItem(IDC_BUTTON_test)->EnableWindow(true);
-		dd.DD_key(5782963, 7451267);
 		break;
 	case -1:
 	case -2:
 	case -3:
-		AfxMessageBox(L"载入驱动时错误");
-		break;
-	case -11 :
-		AfxMessageBox(L"文件不存在");
-		break;
-	case -12 :
-		AfxMessageBox(L"载入库错误");
-		break;
-	case -13 :
-		AfxMessageBox(L"获取函数地址错误");
+		AfxMessageBox(L"DD Load Error");
 		break;
 	default:
-		AfxMessageBox(L"未知错误");
+		AfxMessageBox(L"Error");
 		break;
 	}
 
 }
 
 
-//热键相关
 void Capp_mfcDlg::SetHotKey(void)
 {
-	::RegisterHotKey(GetSafeHwnd(),6688, MOD_CONTROL   ,    'K'     ); 
-	::RegisterHotKey(GetSafeHwnd(),6689,                0           ,  VK_F8 ); 
+	::RegisterHotKey(GetSafeHwnd(),6688, 0   ,  VK_F8); 
+	::RegisterHotKey(GetSafeHwnd(),6689, 0   ,  VK_F9); 
 
 }
 void Capp_mfcDlg::UnHotKey(void)
@@ -194,19 +176,20 @@ void Capp_mfcDlg::UnHotKey(void)
 
 void Capp_mfcDlg::OnHotKey(UINT nHotKeyId, UINT nKey1, UINT nKey2)
 {
-	// TODO: 在此添加消息处理程序代码和/或调用默认值
 	switch (nHotKeyId)
 	{
-	case 6688:  // 模拟ctrl+alt+del
-		dd.DD_key( 600  ,  1);   //按下 ctrl键 6区第1个
-		dd.DD_key( 602  ,  1);   //        alt     6区第3个
-		dd.DD_key( 706  ,  1);   //        del    7区第7个
-		dd.DD_key( 706  ,  2);   //放开
-		dd.DD_key( 602  ,  2); 
+	case 6688:  
+		// ctrl+alt+del
+		dd.DD_key( 600  ,  1);  //600 == L.CTRL down
+		dd.DD_key( 602  ,  1);  //602 == L.ALT   down
+		dd.DD_key( 706  ,  1);  //706 == DEL   down
+		dd.DD_key( 706  ,  2);  
+		dd.DD_key( 602  ,  2); 	 //up
 		dd.DD_key( 600  ,  2);         
      	break;
-	case  6689:  // 模拟输入键盘上可见字符
-		dd.DD_str(" Keyboard char [A-Za_z] {@$} ");
+	case  6689:  
+		// type visiable char
+		dd.DD_str("Keyboard char [A-Za_z] {@$} ");
 		break;
 	default:
 		break;
@@ -215,60 +198,33 @@ void Capp_mfcDlg::OnHotKey(UINT nHotKeyId, UINT nKey1, UINT nKey2)
 	CDialog::OnHotKey(nHotKeyId, nKey1, nKey2);
 }
 
-//从注册表中读取DD入口文件位置
-CString Capp_mfcDlg::LoadFromReg()
-{
-	WCHAR dll_file[MAX_PATH] = {0};
-	HKEY hKey;
-	
-	// DD 入口文件位置一般保存在 HKEY_LOCAL_MACHINE\SOFTWARE\DD XOFT\path 中
-	if (ERROR_SUCCESS == RegOpenKey(HKEY_LOCAL_MACHINE, L"Software\\DD XOFT" , &hKey))
-	{
-		DWORD size = MAX_PATH;
-		DWORD type = REG_SZ;
-		WCHAR *pkey = L"path";
-
-		if ( ERROR_SUCCESS == RegQueryValueEx(hKey, pkey, NULL, &type, (LPBYTE)dll_file, (LPDWORD)&size))
-		{
-			RegCloseKey(hKey);
-		}
-	}
-	return dll_file;
-}
-
-
-
-
-//定时器
 void Capp_mfcDlg::OnTimer(UINT_PTR nIDEvent)
 {
-	// TODO: 在此添加消息处理程序代码和/或调用默认值
 	UpdateData(TRUE);
 				
 	switch(m_sel+1)
 	{
-	case 1 :                      //鼠标点击
-		dd.DD_btn(1);         // 1左下 2左上 4右下 8右上
+	case 1 :                     
+		//1==L.down, 2==L.up, 4==R.down, 8==R.up, 16==M.down, 32==M.up
+		dd.DD_btn(1);  
+		Sleep(50); //may, delay 50ms
 		dd.DD_btn(2);
 		break;
-	case 2 :                      //鼠标移动
-		{
-			static int x=50;	static int y=50;            //起始点坐标设置成 50，50
-			x+=15;		y+=10;
-			//dd.DD_mov( x , y);
-			dd.DD_movR(10,10);
-		}
+	case 2 :                    
+		dd.DD_movR(20, 20);   //move rel.
+		dd.DD_mov(200, 200); //move abs.
 		break;
 	case 3 :
-		dd.DD_whl(1);		// 鼠标滚轮(上)
+		dd.DD_whl(1);		//up
 		Sleep(200);
-		dd.DD_whl(2);       //              (下)
+		dd.DD_whl(2);       //down
 		break;
 	case 4 :                   
-		{                                              //键盘TAB按键 
-			int ddcode=300;			       // 3区第1 或 通过函数转换
+		{                                             
+			int ddcode=300;		//tab == 300 in ddcode	   
 			ddcode = dd.DD_todc(VK_TAB);
-			dd.DD_key( ddcode ,1);        
+			dd.DD_key( ddcode ,1); 
+			Sleep(1);					//may, delay 50ms
 			dd.DD_key( ddcode ,2);
 		}
 		break;

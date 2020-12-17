@@ -55,7 +55,6 @@
     <None Include="res\app_mfc.rc2">
       <Filter>资源文件</Filter>
     </None>
-    <None Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="app_mfc.rc">

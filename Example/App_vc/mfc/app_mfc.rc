@@ -16,13 +16,11 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// 中文(中华人民共和国) resources
+// 中文(简体，中国) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
-#ifdef _WIN32
 LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
 #pragma code_page(936)
-#endif //_WIN32
 
 #ifdef APSTUDIO_INVOKED
 /////////////////////////////////////////////////////////////////////////////
@@ -80,19 +78,19 @@ IDR_MAINFRAME           ICON                    "res\\app_mfc.ico"
 IDD_APP_MFC_DIALOG DIALOGEX 0, 0, 319, 271
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_MINIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
 EXSTYLE WS_EX_APPWINDOW
-CAPTION "DD MFC示例"
+CAPTION "DD MFC"
 FONT 9, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    PUSHBUTTON      "定位DD入口文件",IDC_BUTTON_findfile,118,42,82,14
+    PUSHBUTTON      "DD dll",IDC_BUTTON_findfile,118,42,82,14
     GROUPBOX        "",IDC_STATIC,66,70,186,147
-    CONTROL         "鼠标点击",IDC_RADIO1,"Button",BS_AUTORADIOBUTTON | WS_GROUP,137,86,43,10
-    CONTROL         "鼠标移动",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON,137,106,43,10
-    CONTROL         "鼠标滚轮",IDC_RADIO3,"Button",BS_AUTORADIOBUTTON,137,126,43,10
-    PUSHBUTTON      "开始测试",IDC_BUTTON_test,133,229,50,14,WS_DISABLED
+    CONTROL         "Mouse click",IDC_RADIO1,"Button",BS_AUTORADIOBUTTON | WS_GROUP,137,86,51,10
+    CONTROL         "Mouse  Move",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON,137,106,57,10
+    CONTROL         "Mouse  wheel",IDC_RADIO3,"Button",BS_AUTORADIOBUTTON,137,126,59,10
+    PUSHBUTTON      "Start",IDC_BUTTON_test,133,229,50,14,WS_DISABLED
     EDITTEXT        IDC_EDIT_dllfile,56,21,207,14,ES_AUTOHSCROLL
-    CONTROL         "键盘按键",IDC_RADIO6,"Button",BS_AUTORADIOBUTTON,137,146,43,10
-    LTEXT           "1. 热键ctrl+k 模拟ctrl+alt+del",IDC_STATIC,116,168,92,8
-    LTEXT           "2. F8 输入键盘可见字符",IDC_STATIC,116,193,74,8
+    CONTROL         "Keyboard tab",IDC_RADIO6,"Button",BS_AUTORADIOBUTTON,137,146,58,10
+    LTEXT           "1. F8 == ctrl+alt+del",IDC_STATIC,137,168,67,8
+    LTEXT           "2. F9 == ""***""",IDC_STATIC,137,193,50,8
 END
 
 
@@ -141,7 +139,7 @@ END
 //
 
 #ifdef APSTUDIO_INVOKED
-GUIDELINES DESIGNINFO 
+GUIDELINES DESIGNINFO
 BEGIN
     IDD_APP_MFC_DIALOG, DIALOG
     BEGIN
@@ -153,7 +151,7 @@ BEGIN
 END
 #endif    // APSTUDIO_INVOKED
 
-#endif    // 中文(中华人民共和国) resources
+#endif    // 中文(简体，中国) resources
 /////////////////////////////////////////////////////////////////////////////
 
 
