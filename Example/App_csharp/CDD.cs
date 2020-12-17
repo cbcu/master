@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 
 namespace App_csharp
 {
-    public enum KeyModifiers        //组合键枚举
+    public enum KeyModifiers       
     {
         None = 0,
         Alt = 1,
@@ -13,13 +13,6 @@ namespace App_csharp
         Shift = 4,
         Windows = 8
     }
-    public enum MouseBtn           //鼠标按键枚举 
-    {
-        左下 = 1,
-        左上 = 2,
-        右下 = 4,
-        右上 = 8
-    } 
     class CDD
     {
         [DllImport("Kernel32")]
@@ -40,13 +33,13 @@ namespace App_csharp
         public delegate int pDD_str(string str);
         public delegate int pDD_todc(int vkcode);
 
-        public pDD_btn btn;          // 鼠标点击
-        public pDD_whl whl;          // 鼠标滚轮
-        public pDD_mov mov;       // 鼠标绝对移动
-        public pDD_movR movR;   // 鼠标相对移动
-        public pDD_key key;          // 键盘按键
-        public pDD_str str;            //  键盘字符
-        public pDD_todc todc;      // 标准虚拟键码转DD码
+        public pDD_btn btn;         //Mouse button 
+        public pDD_whl whl;         //Mouse wheel
+        public pDD_mov mov;      //Mouse move abs. 
+        public pDD_movR movR;  //Mouse move rel. 
+        public pDD_key key;         //Keyboard 
+        public pDD_str str;            //Input visible char
+        public pDD_todc todc;      //VK to ddcode
 
         private System.IntPtr m_hinst;
 

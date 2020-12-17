@@ -163,7 +163,7 @@ namespace App_csharp
             base.WndProc(ref m);
         }
 
-        private void ProcessHotkey(Message msg)              //按下设定的键时调用该函数
+        private void ProcessHotkey(Message msg)        
         {
             switch (msg.WParam.ToInt32())
             {
@@ -171,26 +171,26 @@ namespace App_csharp
                     Fun80();
                     break;
                 case 90:
-                    Fun90();                                                         //调用相关函数
+                    Fun90();                                                        
                     break;
             }
         }
 
         private void Fun80()
         {
-            dd.str("  Keyboard char [A-Za_z] {@$} ");
+            dd.str("Keyboard char [A-Za_z] {@$} ");
         }
 
         private void Fun90()
         {
             if (dd.key != null)
             {
-                //模拟 系统热键 CTRL+ALT+DEL
-                dd.key(600, 1);                                      // CTRL 键位在 6区1
-                dd.key(602, 1);                                      // ALT   键位在 6区3
-                dd.key(706, 1);                                      // DEL   键位在 7区7
+                //CTRL+ALT+DEL
+                dd.key(600, 1);                                      //600 == L.CTRL down
+                dd.key(602, 1);                                      // ALT   down
+                dd.key(706, 1);                                      // DEL   down
                 System.Threading.Thread.Sleep(5);
-                dd.key(706, 2);
+                dd.key(706, 2);                                       //up
                 dd.key(602, 2);
                 dd.key(600, 2);
             }

@@ -1,0 +1,11 @@
+Z:\ddxoft\master\Example\App_vb.net\bin\x86\Release\App_vb.exe
+Z:\ddxoft\master\Example\App_vb.net\bin\x86\Release\App_vb.pdb
+Z:\ddxoft\master\Example\App_vb.net\bin\x86\Release\App_vb.xml
+Z:\ddxoft\master\Example\App_vb.net\obj\x86\Release\app_vb.vbprojAssemblyReference.cache
+Z:\ddxoft\master\Example\App_vb.net\obj\x86\Release\App_vb.Form1.resources
+Z:\ddxoft\master\Example\App_vb.net\obj\x86\Release\App_vb.Resources.resources
+Z:\ddxoft\master\Example\App_vb.net\obj\x86\Release\app_vb.vbproj.GenerateResource.cache
+Z:\ddxoft\master\Example\App_vb.net\obj\x86\Release\app_vb.vbproj.CoreCompileInputs.cache
+Z:\ddxoft\master\Example\App_vb.net\obj\x86\Release\App_vb.exe
+Z:\ddxoft\master\Example\App_vb.net\obj\x86\Release\App_vb.xml
+Z:\ddxoft\master\Example\App_vb.net\obj\x86\Release\App_vb.pdb
