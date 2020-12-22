@@ -46,21 +46,13 @@ BOOL Capp_mfcDlg::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
-	// 设置此对话框的图标。当应用程序主窗口不是对话框时，框架将自动
-	//  执行此操作
-	SetIcon(m_hIcon, TRUE);			// 设置大图标
-	SetIcon(m_hIcon, FALSE);		// 设置小图标
-
-	// TODO: 在此添加额外的初始化代码
+	SetIcon(m_hIcon, TRUE);		
+	SetIcon(m_hIcon, FALSE);	
 	
 	SetHotKey();
 
 	return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
 }
-
-// 如果向对话框添加最小化按钮，则需要下面的代码
-//  来绘制该图标。对于使用文档/视图模型的 MFC 应用程序，
-//  这将由框架自动完成。
 
 void Capp_mfcDlg::OnPaint()
 {
@@ -78,7 +70,6 @@ void Capp_mfcDlg::OnPaint()
 		int x = (rect.Width() - cxIcon + 1) / 2;
 		int y = (rect.Height() - cyIcon + 1) / 2;
 
-		// 绘制图标
 		dc.DrawIcon(x, y, m_hIcon);
 	}
 	else
@@ -87,16 +78,11 @@ void Capp_mfcDlg::OnPaint()
 	}
 }
 
-//当用户拖动最小化窗口时系统调用此函数取得光标
-//显示。
 HCURSOR Capp_mfcDlg::OnQueryDragIcon()
 {
 	return static_cast<HCURSOR>(m_hIcon);
 }
 
-
-
-//查找dll文件 
 void Capp_mfcDlg::OnBnClickedButtonfindfile()
 {
 	LPCWSTR filter = L"DD dll|*.dll";
@@ -135,8 +121,6 @@ void Capp_mfcDlg::OnBnClickedButtontest()
 }
 
 
-
-//设置状态
 void Capp_mfcDlg::SetStatus(int val)
 {
 	GetDlgItem(IDC_BUTTON_test)->EnableWindow(false);
